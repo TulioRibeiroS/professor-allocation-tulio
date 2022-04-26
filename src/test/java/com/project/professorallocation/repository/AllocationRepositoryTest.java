@@ -3,6 +3,7 @@ package com.project.professorallocation.repository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import com.project.professorallocation.model.Allocation;
 @TestPropertySource(locations = "classpath:application.properties")
 public class AllocationRepositoryTest {
 	
-	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mmZ");
 	
 	@Autowired
 	private AllocationRepository allocationRepository;
@@ -28,6 +29,7 @@ public class AllocationRepositoryTest {
 	@Test
 	public void create() throws ParseException {
 		Allocation allocation = new Allocation();
+		
 		allocation.setDayOfWeek(DayOfWeek.THURSDAY);
 		allocation.setStartHour(sdf.parse("19:00-0300"));
 		allocation.setEndHour(sdf.parse("21:00-0300"));
@@ -39,6 +41,23 @@ public class AllocationRepositoryTest {
 		System.out.println(allocation);
 	}
 	
+	@Test
+	public void findAll() {
+		List<Allocation> allAllocations = allocationRepository.findAll();
+		
+		allAllocations.forEach(System.out::println);
+	}
 	
+	@Test
+	public void findAllByProfessorId() {
+		List<Allocation> allocationsOfASpecificProfessor = allocationRepository.findByProfessorId(1L);
+		
+		allocationsOfASpecificProfessor.forEach(System.out::println);
+	}
+	
+	@Test
+	public void deleteAll() {
+		allocationRepository.deleteAllInBatch();
+	}
 
 }
