@@ -48,4 +48,9 @@ public class CourseService {
 	public List<Course> findAll() {
 		return repository.findAll();
 	}
+
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		repository.deleteAll();
+	}
 }
