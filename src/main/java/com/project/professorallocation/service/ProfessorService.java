@@ -16,19 +16,19 @@ public class ProfessorService {
 		this.repository = repository;
 	}
 	
-//	public Professor created(Professor professor) {
-//		professor.setId(null);
-//		return saveInternal(professor);
-//	}
-//	
-//	public Professor update(Professor professor) {
-//		Long id = professor.getId();
-//		if (id == null || !repository.existsById(id)) {
-//			return null;
-//		} else {
-//			return saveInternal(professor);
-//		}
-//	}
+	public Professor created(Professor professor) {
+		professor.setId(null);
+		return saveInternal(professor);
+	}
+	
+	public Professor update(Professor professor) {
+		Long id = professor.getId();
+		if (id == null || !repository.existsById(id)) {
+			return null;
+		} else {
+			return saveInternal(professor);
+		}
+	}
 	
 	public void deleteById(Long id) {
 		if (repository.existsById(id)) {
@@ -46,8 +46,8 @@ public class ProfessorService {
 		return repository.findAll();
 	}
 	
-//	private Professor saveInternal(Professor professor) {
-//		Professor insertedProfessor = repository.save(professor);
-//		return insertedProfessor;
-//	}
+	private Professor saveInternal(Professor professor) {
+		Professor insertedProfessor = repository.save(professor);
+		return insertedProfessor;
+	}
 }
