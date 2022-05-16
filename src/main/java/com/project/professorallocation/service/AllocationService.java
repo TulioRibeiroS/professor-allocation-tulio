@@ -79,4 +79,19 @@ public class AllocationService {
 		// TODO Auto-generated method stub
 		repository.deleteAll();
 	}
+
+	public List<Allocation> findByProfessor(Long id) {
+		// TODO Auto-generated method stub
+		return repository.findByProfessorId(id);
+	}
+	
+	public List<Allocation> findByCourse(Long id) {
+		return repository.findByCourseId(id);
+	}
+
+	public Allocation save(Allocation allocation) {
+		// TODO Auto-generated method stub
+		allocation.setId(null);
+		return saveInternal(allocation);
+	}
 }
